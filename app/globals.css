@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  cursor: none;
+  background: #000000;
+}
+
+body {
+  min-height: 100vh;
+  background: #000000;
+  color: #ffffff;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::selection {
+  background: #ffffff;
+  color: #000000;
+}
+
+* {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 1px solid #ffffff;
+  outline-offset: 4px;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+
+  .font-body {
+    font-family: var(--font-body), sans-serif;
+  }
+
+  .font-label {
+    font-family: var(--font-label), monospace;
+  }
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+.scroll-bounce {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-bounce {
+    animation: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  html {
+    cursor: auto;
+  }
+}
