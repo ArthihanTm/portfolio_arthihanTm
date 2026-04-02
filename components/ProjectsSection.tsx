@@ -6,21 +6,21 @@ import { usePortfolioAnimations } from "@/lib/animations";
 const projects = [
   {
     category: "WEB APP",
-    name: "Projekt Alpha",
+    name: "PersonalPlaner",
     description:
-      "Ein modernes digitales Erlebnis mit Fokus auf Interaktion.",
+      "Wartet auf eine bessere Beschreibung.",
   },
   {
-    category: "UI/UX",
-    name: "Projekt Beta",
+    category: "WEB APP",
+    name: "VeritasNews",
     description:
-      "Ein klares System für konsistentes und skalierbares Design.",
+      "Wartet auf eine bessere Beschreibung.",
   },
   {
     category: "BRANDING",
-    name: "Projekt Gamma",
+    name: "LuckiiPage",
     description:
-      "Identitäts- und Bewegungsansatz für Produkt-Storytelling.",
+      "Wartet auf eine bessere Beschreibung.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function ProjectsSection() {
               data-cursor="grow"
             >
               <span className="font-label text-[11px] uppercase tracking-label text-muted">
-                {project.category}
+                {project.category ?? "PROJEKT"}
               </span>
               <span>
                 <span className="block font-display text-4xl italic leading-tight text-white md:text-[2.75rem]">

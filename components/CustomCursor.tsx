@@ -65,7 +65,7 @@ export default function CustomCursor() {
     return null;
   }
 
-  const size = isHovering ? 32 : 8;
+  const size = isHovering ? 24 : 8;
 
   return (
     <motion.div

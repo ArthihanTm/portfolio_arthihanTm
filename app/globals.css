@@ -12,6 +12,11 @@ html {
   background: #000000;
 }
 
+*,
+*:hover {
+  cursor: none !important;
+}
+
 body {
   min-height: 100vh;
   background: #000000;
@@ -66,7 +71,7 @@ textarea:focus-visible {
   }
 
   .font-label {
-    font-family: var(--font-label), monospace;
+    font-family: var(--font-label), sans-serif;
   }
 }
 

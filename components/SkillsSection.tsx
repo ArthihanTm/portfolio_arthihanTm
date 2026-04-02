@@ -5,11 +5,13 @@ import { usePortfolioAnimations } from "@/lib/animations";
 
 const skillBlocks = [
   {
+    category: "WEB APP",
     title: "Webentwicklung",
     description: "Modernes Frontend und robustes Backend.",
     tags: ["React", "Tailwind", "Next.js"],
   },
   {
+    category: "UI/UX",
     title: "UI/UX Design",
     description: "Klare Interfaces mit starker visueller Sprache.",
     tags: ["Figma", "Prototyp", "Systeme"],

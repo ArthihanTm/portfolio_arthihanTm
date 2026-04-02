@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Inter, Space_Mono } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 
 export const displayFont = Cormorant_Garamond({
   variable: "--font-display",
@@ -15,9 +15,9 @@ export const bodyFont = Inter({
   display: "swap",
 });
 
-export const labelFont = Space_Mono({
+export const labelFont = Inter({
   variable: "--font-label",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
