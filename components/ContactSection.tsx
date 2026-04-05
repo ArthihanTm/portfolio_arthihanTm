@@ -16,23 +16,24 @@ export default function ContactSection() {
       id="kontakt"
       className="border-t border-border px-6 py-24 md:px-10 md:py-32 lg:px-16"
     >
-      <motion.div
-        className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-20"
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
+      <div className="mx-auto grid max-w-[1440px] gap-16 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:gap-20">
         <div className="max-w-2xl">
-          <motion.h2
-            className="font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]"
-            variants={fadeUp}
-          >
+          <h2 className="font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]">
             Kontakt
-          </motion.h2>
+          </h2>
         </div>
 
-        <div className="space-y-12">
+        <motion.div
+          className="space-y-12"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: "some",
+            margin: "0px 0px 600px 0px",
+          }}
+        >
           <motion.label className="block" variants={fadeUp}>
             <span className="font-label text-[11px] uppercase tracking-label text-muted">
               Deine Email
@@ -65,8 +66,8 @@ export default function ContactSection() {
               Nachricht senden
             </button>
           </form>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

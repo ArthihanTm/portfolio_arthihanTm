@@ -8,13 +8,21 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: none;
   background: #000000;
 }
 
-*,
-*:hover {
-  cursor: none !important;
+/*
+ * Hide the system cursor wherever we show the custom cursor (fine pointer + hover).
+ * Use `*` without `:hover` so UA `cursor: pointer` on links/buttons is still overridden.
+ */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body,
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }
 
 body {

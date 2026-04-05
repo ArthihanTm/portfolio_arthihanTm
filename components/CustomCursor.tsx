@@ -1,24 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-
-const springConfig = {
-  damping: 28,
-  stiffness: 320,
-  mass: 0.35,
-};
+import { motion, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
+  const visibleRef = useRef(false);
+  const hoveringRef = useRef(false);
+
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
-
-  const springX = useSpring(mouseX, springConfig);
-  const springY = useSpring(mouseY, springConfig);
 
   useEffect(() => {
     if (window.matchMedia("(hover: none), (pointer: coarse)").matches) {
@@ -26,33 +20,43 @@ export default function CustomCursor() {
       return;
     }
 
+    const show = () => {
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setIsVisible(true);
+      }
+    };
+
     const handleMouseMove = (event: MouseEvent) => {
       mouseX.set(event.clientX);
       mouseY.set(event.clientY);
-      setIsVisible(true);
+      show();
     };
 
     const handleMouseLeave = () => {
+      visibleRef.current = false;
       setIsVisible(false);
+      hoveringRef.current = false;
       setIsHovering(false);
     };
 
     const handleMouseOver = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
-
-      if (!target) {
-        return;
-      }
+      if (!target) return;
 
       const buttonTarget = target.closest("button,[data-button='true']");
       const hoverTarget = target.closest("[data-cursor='grow']");
+      const next = Boolean(hoverTarget && !buttonTarget);
 
-      setIsHovering(Boolean(hoverTarget) && !buttonTarget);
+      if (next !== hoveringRef.current) {
+        hoveringRef.current = next;
+        setIsHovering(next);
+      }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -70,13 +74,13 @@ export default function CustomCursor() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[70] hidden bg-white md:block"
+      className="pointer-events-none fixed left-0 top-0 z-[70] block bg-white"
       style={{
         width: size,
         height: size,
         borderRadius: "999px",
-        x: springX,
-        y: springY,
+        x: mouseX,
+        y: mouseY,
         translateX: "-50%",
         translateY: "-50%",
         opacity: isVisible ? 1 : 0,

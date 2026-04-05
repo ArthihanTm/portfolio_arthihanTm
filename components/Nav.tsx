@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 
 const navLinks = [
   { href: "#startseite", label: "Startseite" },
@@ -11,13 +11,15 @@ const navLinks = [
 ];
 
 const HIDE_DELAY = 2500;
+const SCROLL_TIMER_THROTTLE_MS = 120;
 
 export default function Nav() {
   const [visible, setVisible] = useState(true);
   const [hovered, setHovered] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const { scrollY } = useScroll();
+  const rafRef = useRef<number | null>(null);
+  const lastTimerBumpRef = useRef(0);
 
   const resetTimer = useCallback(() => {
     setVisible(true);
@@ -25,10 +27,31 @@ export default function Nav() {
     timerRef.current = setTimeout(() => setVisible(false), HIDE_DELAY);
   }, []);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 24);
-    resetTimer();
-  });
+  useEffect(() => {
+    const onScroll = () => {
+      if (rafRef.current != null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        const y = window.scrollY;
+        const scrolled = y > 24;
+        setIsScrolled((prev) => (prev === scrolled ? prev : scrolled));
+
+        const now = performance.now();
+        if (now - lastTimerBumpRef.current >= SCROLL_TIMER_THROTTLE_MS) {
+          lastTimerBumpRef.current = now;
+          resetTimer();
+        }
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [resetTimer]);
 
   useEffect(() => {
     timerRef.current = setTimeout(() => setVisible(false), HIDE_DELAY);

@@ -1,53 +1,84 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
+import { useMemo } from "react";
 import { usePortfolioAnimations } from "@/lib/animations";
 
+const fadeEase = [0.22, 1, 0.36, 1] as const;
+
+function fadeUpWithDelay(base: Variants, delay: number): Variants {
+  const show = base.show;
+  const fallback: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: fadeEase, delay },
+    },
+  };
+
+  if (typeof show === "object" && show !== null && !Array.isArray(show)) {
+    const hasMotionValues =
+      "opacity" in show || "y" in show || "x" in show || "scale" in show;
+    if (hasMotionValues) {
+      const t = show.transition;
+      return {
+        hidden: base.hidden,
+        show: {
+          ...show,
+          transition:
+            typeof t === "object" && t !== null && !Array.isArray(t)
+              ? { ...t, delay }
+              : { delay },
+        },
+      };
+    }
+  }
+
+  return fallback;
+}
+
 export default function HeroBanner() {
-  const { letterReveal, stagger, fadeUp } = usePortfolioAnimations();
-  const titleWords = ["Arthihan"];
+  const { fadeUp } = usePortfolioAnimations();
+
+  const variantsPortfolio = useMemo(() => fadeUpWithDelay(fadeUp, 0), [fadeUp]);
+  const variantsSub = useMemo(() => fadeUpWithDelay(fadeUp, 0.1), [fadeUp]);
+  const variantsLinks = useMemo(() => fadeUpWithDelay(fadeUp, 0.2), [fadeUp]);
 
   return (
     <section
       id="startseite"
       className="relative flex min-h-screen items-center justify-center px-6 py-24 md:px-10 lg:px-16"
     >
-      <motion.div
-        className="mx-auto flex max-w-[960px] flex-col items-center text-center"
-        variants={stagger}
-        initial="hidden"
-        animate="show"
-      >
+      <div className="mx-auto grid w-full max-w-[960px] grid-cols-1 justify-items-center text-center [grid-template-areas:'portfolio'_'name'_'sub'_'links']">
         <motion.p
-          className="mb-6 font-label text-[11px] uppercase tracking-label text-muted"
-          variants={fadeUp}
+          className="mb-6 font-label text-[11px] uppercase tracking-label text-muted [grid-area:portfolio]"
+          variants={variantsPortfolio}
+          initial={false}
+          animate="show"
         >
           Portfolio
         </motion.p>
 
-        <motion.h1
-          className="select-none font-display text-[clamp(4.5rem,12vw,10rem)] italic leading-[0.88] text-white"
-          variants={stagger}
-        >
-          {titleWords.map((word) => (
-            <motion.span
-              key={word}
-              className="inline-block"
-              variants={letterReveal}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.h1>
+        <h1 className="w-full max-w-[960px] select-none font-display text-[clamp(4.5rem,12vw,10rem)] italic leading-[0.88] text-white [grid-area:name]">
+          Arthihan
+        </h1>
 
         <motion.p
-          className="mt-8 max-w-2xl text-base leading-8 text-white/90 md:text-lg"
-          variants={fadeUp}
+          className="mt-8 max-w-2xl text-base leading-8 text-white/90 md:text-lg [grid-area:sub]"
+          variants={variantsSub}
+          initial={false}
+          animate="show"
         >
           Design, Entwicklung & KI.
         </motion.p>
 
-        <motion.div className="mt-10 flex items-center gap-6" variants={fadeUp}>
+        <motion.div
+          className="mt-10 flex items-center gap-6 [grid-area:links]"
+          variants={variantsLinks}
+          initial={false}
+          animate="show"
+        >
           <a
             href="https://github.com/ArthihanTm"
             target="_blank"
@@ -57,7 +88,9 @@ export default function HeroBanner() {
           >
             GitHub
           </a>
-          <span aria-hidden="true" className="text-border">|</span>
+          <span aria-hidden="true" className="text-border">
+            |
+          </span>
           <a
             href="https://www.linkedin.com/in/arthihan-thirumal-b93b593b6/"
             target="_blank"
@@ -68,8 +101,7 @@ export default function HeroBanner() {
             LinkedIn
           </a>
         </motion.div>
-      </motion.div>
-
+      </div>
     </section>
   );
 }

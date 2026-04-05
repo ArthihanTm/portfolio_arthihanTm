@@ -26,21 +26,22 @@ export default function SkillsSection() {
       id="kompetenzen"
       className="border-t border-border px-6 py-24 md:px-10 md:py-32 lg:px-16"
     >
-      <motion.div
-        className="mx-auto max-w-[1440px]"
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <motion.p
-          className="font-label text-[11px] uppercase tracking-label text-muted"
-          variants={fadeUp}
-        >
+      <div className="mx-auto max-w-[1440px]">
+        <p className="font-label text-[11px] uppercase tracking-label text-muted">
           Was kann ich?
-        </motion.p>
+        </p>
 
-        <div className="mt-16 grid gap-12 md:grid-cols-2 md:gap-0">
+        <motion.div
+          className="mt-16 grid gap-12 md:grid-cols-2 md:gap-0"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: "some",
+            margin: "0px 0px 600px 0px",
+          }}
+        >
           {skillBlocks.map((block, index) => (
             <motion.article
               key={block.title}
@@ -72,8 +73,8 @@ export default function SkillsSection() {
               </div>
             </motion.article>
           ))}
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

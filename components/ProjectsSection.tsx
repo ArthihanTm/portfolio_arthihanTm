@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
+import InteractiveImageAccordion from "@/components/ui/interactive-image-accordion";
 import { usePortfolioAnimations } from "@/lib/animations";
+import { projectImageAccordionItems } from "@/lib/project-image-accordion";
 
 const projects = [
   {
@@ -32,28 +34,46 @@ export default function ProjectsSection() {
       id="projekte"
       className="border-t border-border px-6 py-24 md:px-10 md:py-32 lg:px-16"
     >
-      <motion.div
-        className="mx-auto max-w-[1440px]"
-        variants={stagger}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.15 }}
-      >
-        <motion.p
-          className="font-label text-[11px] uppercase tracking-label text-muted"
-          variants={fadeUp}
-        >
+      <div className="mx-auto max-w-[1440px]">
+        <p className="font-label text-[11px] uppercase tracking-label text-muted">
           Portfolio
-        </motion.p>
+        </p>
 
-        <motion.h2
-          className="mt-4 font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]"
-          variants={fadeUp}
-        >
+        <h2 className="mt-4 font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]">
           Projektübersicht
-        </motion.h2>
+        </h2>
 
-        <motion.div className="mt-16 border-t border-border" variants={stagger}>
+        <motion.div
+          className="mt-16 border-t border-border pt-12"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: "some",
+            margin: "0px 0px 600px 0px",
+          }}
+        >
+          <InteractiveImageAccordion
+            items={projectImageAccordionItems}
+            description="Mit der Maus über die Streifen fahren oder per Tastatur fokussieren — jedes Feld steht für einen Schwerpunkt. Darunter die Projektliste mit Kurzinfos."
+            ctaLabel="Projekt anfragen"
+            ctaHref="#kontakt"
+            initialActiveIndex={2}
+          />
+        </motion.div>
+
+        <motion.div
+          className="mt-16 border-t border-border"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{
+            once: true,
+            amount: "some",
+            margin: "0px 0px 600px 0px",
+          }}
+        >
           {projects.map((project) => (
             <motion.a
               key={project.name}
@@ -62,7 +82,10 @@ export default function ProjectsSection() {
               variants={fadeUp}
               data-cursor="grow"
             >
-              <span className="font-label text-[11px] uppercase tracking-label text-muted">
+              <span
+                className="pointer-events-none select-none font-label text-[11px] uppercase tracking-label text-muted invisible"
+                aria-hidden="true"
+              >
                 {project.category ?? "PROJEKT"}
               </span>
               <span>
@@ -82,7 +105,7 @@ export default function ProjectsSection() {
             </motion.a>
           ))}
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
