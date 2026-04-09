@@ -82,9 +82,6 @@ export default function SkillsSection() {
       <section className="sticky top-0 h-screen overflow-hidden border-t border-border flex flex-col">
         {/* Header */}
         <div className="px-6 pt-12 pb-6 md:px-10 lg:px-16 flex-none">
-          <p className="font-label text-[11px] uppercase tracking-label text-muted">
-            Was kann ich?
-          </p>
           <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] italic leading-[0.95]">
             Kompetenzen
           </h2>
