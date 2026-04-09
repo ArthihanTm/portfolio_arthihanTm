@@ -97,6 +97,15 @@ textarea:focus-visible {
   animation: scroll-bounce 1.8s ease-in-out infinite;
 }
 
+/* Hide scrollbar for horizontal scroll tracks */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

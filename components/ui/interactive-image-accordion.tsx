@@ -1,6 +1,6 @@
 "use client";
 
-import type { SyntheticEvent } from "react";
+import type { CSSProperties, SyntheticEvent } from "react";
 import { useState } from "react";
 import type {
   ImageAccordionItemData,
@@ -12,6 +12,13 @@ export type { ImageAccordionItemData, InteractiveImageAccordionProps };
 const FALLBACK_SRC =
   "https://placehold.co/400x450/222222/ffffff?text=Bild";
 
+const LABEL_FADE_IN_MS = 200;
+const LABEL_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+/** Streifen-Breiten beim Wechsel — wie früher (500 ms, gleicher Ease wie fadeUp) */
+const ACCORDION_COLUMN_MS = 500;
+const ACCORDION_COLUMN_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
 function AccordionItem({
   item,
   isActive,
@@ -21,18 +28,27 @@ function AccordionItem({
   isActive: boolean;
   onActivate: () => void;
 }) {
+  const [labelVisible, setLabelVisible] = useState(false);
+
   return (
     <button
       type="button"
       aria-expanded={isActive}
       aria-label={item.title}
       className={[
-        "relative h-[min(450px,55vh)] shrink-0 cursor-pointer overflow-hidden rounded-xl border border-border text-left transition-[width] duration-500 ease-out",
+        "relative h-[min(450px,55vh)] min-w-0 w-full cursor-pointer overflow-hidden rounded-xl border border-border text-left",
         "focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-white",
-        isActive ? "w-[min(100%,400px)]" : "w-14 sm:w-16",
       ].join(" ")}
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
+      onMouseEnter={() => {
+        onActivate();
+        setLabelVisible(true);
+      }}
+      onMouseLeave={() => setLabelVisible(false)}
+      onFocus={() => {
+        onActivate();
+        setLabelVisible(true);
+      }}
+      onBlur={() => setLabelVisible(false)}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- externe Unsplash-URLs */}
       <img
@@ -49,11 +65,24 @@ function AccordionItem({
 
       <span
         className={[
-          "absolute text-white transition-all duration-300 ease-out",
+          "pointer-events-none absolute z-10 text-white",
           isActive
             ? "bottom-5 left-1/2 max-w-[90%] -translate-x-1/2 rotate-0 text-center font-display text-lg font-normal italic leading-snug sm:bottom-6 sm:text-xl"
             : "bottom-24 left-1/2 w-max max-w-none -translate-x-1/2 rotate-90 whitespace-nowrap font-display text-[10px] font-normal italic leading-none tracking-[0.04em] sm:text-[11px]",
         ].join(" ")}
+        style={
+          labelVisible
+            ? ({
+                opacity: 1,
+                visibility: "visible",
+                transition: `opacity ${LABEL_FADE_IN_MS}ms ${LABEL_EASE}`,
+              } satisfies CSSProperties)
+            : ({
+                opacity: 0,
+                visibility: "hidden",
+                transition: "none",
+              } satisfies CSSProperties)
+        }
       >
         {item.title}
       </span>
@@ -78,6 +107,16 @@ export default function InteractiveImageAccordion({
   if (items.length === 0) {
     return null;
   }
+
+  const activeFr = 2.35;
+  const inactiveFr = 1;
+  const gridTemplateColumns = items
+    .map((_, index) =>
+      index === activeIndex
+        ? `minmax(0,${activeFr}fr)`
+        : `minmax(0,${inactiveFr}fr)`,
+    )
+    .join(" ");
 
   return (
     <div className="w-full">
@@ -111,7 +150,13 @@ export default function InteractiveImageAccordion({
 
         <div className="w-full min-w-0 md:w-[58%]">
           <div
-            className="flex flex-row items-stretch justify-center gap-2 overflow-x-auto pb-2 pt-1 sm:gap-3 md:justify-end"
+            className="grid w-full gap-2 pb-2 pt-1 sm:gap-3"
+            style={{
+              gridTemplateColumns,
+              transitionProperty: "grid-template-columns",
+              transitionDuration: `${ACCORDION_COLUMN_MS}ms`,
+              transitionTimingFunction: ACCORDION_COLUMN_EASE,
+            }}
             role="group"
             aria-label="Projekt-Themen"
           >

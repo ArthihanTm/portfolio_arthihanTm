@@ -70,7 +70,7 @@ export default function HeroBanner() {
           initial={false}
           animate="show"
         >
-          Design, Entwicklung & KI.
+          Design und Entwicklung
         </motion.p>
 
         <motion.div
@@ -92,7 +92,7 @@ export default function HeroBanner() {
             |
           </span>
           <a
-            href="https://www.linkedin.com/in/arthihan-thirumal-b93b593b6/"
+            href="www.linkedin.com/in/arthihan-thirumal-b93b593b6"
             target="_blank"
             rel="noopener noreferrer"
             className="font-label text-[11px] uppercase tracking-label text-muted transition-colors duration-300 hover:text-white"
