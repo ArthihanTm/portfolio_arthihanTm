@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const projects = [
   {
@@ -29,14 +29,18 @@ const projects = [
   },
 ];
 
-const container = {
+const container: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12 } },
 };
 
-const row = {
+const row: Variants = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1] } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.25, 0.1, 0.25, 1] as const },
+  },
 };
 
 export default function ProjectsSection() {
@@ -92,7 +96,7 @@ export default function ProjectsSection() {
                 {project.name}
               </p>
               <p className="font-label text-[10px] uppercase tracking-label text-muted/50 transition-colors duration-300 group-hover:text-muted sm:hidden">
-                {project.category} · {project.year}
+                {project.year}
               </p>
             </div>
 
@@ -110,9 +114,6 @@ export default function ProjectsSection() {
 
             {/* Category + year */}
             <div className="hidden flex-none text-right sm:block">
-              <p className="font-label text-[10px] uppercase tracking-label text-muted">
-                {project.category}
-              </p>
               <p className="mt-1 font-label text-[10px] tracking-label text-muted/40">
                 {project.year}
               </p>

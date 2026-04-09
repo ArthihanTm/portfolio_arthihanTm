@@ -6,31 +6,31 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const skillBlocks = [
   {
     index: "01",
-    category: "FRONTEND",
-    title: "Webentwicklung",
-    description: "Modernes Frontend und robustes Backend.",
-    tags: ["React", "Next.js", "Tailwind"],
+    category: "BACKEND",
+    title: "Backend",
+    description: "Saubere Logik, stabile Schnittstellen und Datenflüsse.",
+    tags: ["Java", "Python"],
   },
   {
     index: "02",
+    category: "FRONTEND",
+    title: "Webentwicklung",
+    description: "Modernes Frontend und robuste Umsetzung.",
+    tags: ["React", "Next.js", "Tailwind"],
+  },
+  {
+    index: "03",
     category: "UI/UX",
     title: "UI/UX Design",
     description: "Klare Interfaces mit starker visueller Sprache.",
     tags: ["Figma", "Prototyp", "Systeme"],
   },
   {
-    index: "03",
+    index: "04",
     category: "TOOLING",
     title: "Entwicklungs-Tools",
     description: "Schnelle Iteration mit modernen Werkzeugen.",
-    tags: ["Git", "VS Code", "Vercel"],
-  },
-  {
-    index: "04",
-    category: "PERFORMANCE",
-    title: "Optimierung",
-    description: "Schnelle Ladezeiten und sauberer, wartbarer Code.",
-    tags: ["Core Web Vitals", "SEO", "A11y"],
+    tags: ["Git", "Vercel"],
   },
 ];
 
