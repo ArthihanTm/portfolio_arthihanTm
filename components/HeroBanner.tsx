@@ -41,7 +41,6 @@ function fadeUpWithDelay(base: Variants, delay: number): Variants {
 export default function HeroBanner() {
   const { fadeUp } = usePortfolioAnimations();
 
-  const variantsPortfolio = useMemo(() => fadeUpWithDelay(fadeUp, 0), [fadeUp]);
   const variantsSub = useMemo(() => fadeUpWithDelay(fadeUp, 0.1), [fadeUp]);
   const variantsLinks = useMemo(() => fadeUpWithDelay(fadeUp, 0.2), [fadeUp]);
 
@@ -50,16 +49,7 @@ export default function HeroBanner() {
       id="startseite"
       className="relative flex min-h-screen items-center justify-center px-6 py-24 md:px-10 lg:px-16"
     >
-      <div className="mx-auto grid w-full max-w-[960px] grid-cols-1 justify-items-center text-center [grid-template-areas:'portfolio'_'name'_'sub'_'links']">
-        <motion.p
-          className="mb-6 font-label text-[11px] uppercase tracking-label text-muted [grid-area:portfolio]"
-          variants={variantsPortfolio}
-          initial={false}
-          animate="show"
-        >
-          Portfolio
-        </motion.p>
-
+      <div className="mx-auto grid w-full max-w-[960px] grid-cols-1 justify-items-center text-center [grid-template-areas:'name'_'sub'_'links']">
         <h1 className="w-full max-w-[960px] select-none font-display text-[clamp(4.5rem,12vw,10rem)] italic leading-[0.88] text-white [grid-area:name]">
           Arthihan
         </h1>

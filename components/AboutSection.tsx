@@ -1,17 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { usePortfolioAnimations } from "@/lib/animations";
-
-const workflow = [
-  "Ideen schnell visualisieren",
-  "Design in Komponenten übersetzen",
-  "Iterativ mit Feedback verbessern",
-];
-
 export default function AboutSection() {
-  const { fadeUp, stagger } = usePortfolioAnimations();
-
   return (
     <section
       id="uber-mich"
@@ -19,41 +6,34 @@ export default function AboutSection() {
     >
       <div className="mx-auto max-w-[1440px]">
         <h2 className="mt-4 max-w-3xl font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]">
-          Mehr als nur Code.
+          Über mich.
         </h2>
 
-        <motion.div
-          className="mt-16 grid gap-16 md:grid-cols-2 md:gap-20"
-          variants={stagger}
-          initial="hidden"
-          whileInView="show"
-          viewport={{
-            once: true,
-            amount: "some",
-            margin: "0px 0px 600px 0px",
-          }}
-        >
-          <motion.div className="space-y-8 text-lg leading-9 text-white/92" variants={stagger}>
-            <motion.p variants={fadeUp}>
-              Entwicklung, Design und kreative Technik — klar und performant.
-            </motion.p>
-          </motion.div>
+        <div className="mt-16 grid gap-12 md:grid-cols-2 md:gap-20">
+          <div className="space-y-8 text-lg leading-9 text-white/92">
+            <p>
+              Ich baue digitale Produkte, die sich ruhig anfühlen: klare
+              Oberflächen, nachvollziehbare Abläufe und eine Umsetzung, die auch
+              im Detail sauber bleibt.
+            </p>
+            <p className="text-white/80">
+              Mir sind Struktur, Lesbarkeit und Wartbarkeit wichtig — genauso
+              wie gutes Design. Ich arbeite gern iterativ, teste Annahmen früh
+              und bringe Dinge zuverlässig bis zum fertigen Ergebnis.
+            </p>
+          </div>
 
-          <motion.ol className="border-t border-border" variants={stagger}>
-            {workflow.map((item, index) => (
-              <motion.li
-                key={item}
-                className="flex items-start gap-6 border-b border-border py-7"
-                variants={fadeUp}
-              >
-                <span className="font-label text-[11px] uppercase tracking-label text-muted">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-base leading-8 text-white">{item}</span>
-              </motion.li>
-            ))}
-          </motion.ol>
-        </motion.div>
+          <div className="border-t border-border pt-8 text-base leading-8 text-white/80">
+            <p>
+              Fokus: Webentwicklung mit React/Next.js, solide Backend-Grundlagen
+              (Java/Python) und UI/UX-Design in Figma.
+            </p>
+            <p className="mt-6">
+              Wenn du ein Projekt hast, bei dem Design und Technik zusammen
+              gedacht werden sollen, freue ich mich über eine Nachricht.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -1,33 +1,8 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-
-const projects = [
-  {
-    index: "01",
-    year: "2024",
-    category: "WEB APP",
-    name: "PersonalPlaner",
-    description: "Persönlicher Planer mit Kalender, Aufgaben und Notizen.",
-    tags: ["Next.js", "Tailwind", "Supabase"],
-  },
-  {
-    index: "02",
-    year: "2024",
-    category: "WEB APP",
-    name: "VeritasNews",
-    description: "Nachrichtenplattform mit kuratiertem Content-Feed.",
-    tags: ["React", "TypeScript", "API"],
-  },
-  {
-    index: "03",
-    year: "2023",
-    category: "BRANDING",
-    name: "LuckiiPage",
-    description: "Markenpräsenz und Landingpage für ein kreatives Label.",
-    tags: ["Next.js", "Figma", "Framer"],
-  },
-];
+import Link from "next/link";
+import { projects } from "@/lib/projects";
 
 const container: Variants = {
   hidden: {},
@@ -59,14 +34,6 @@ export default function ProjectsSection() {
             Projektübersicht
           </h2>
         </div>
-        <a
-          href="#kontakt"
-          data-button="true"
-          className="hidden sm:inline-flex flex-none items-center gap-3 font-label text-[11px] uppercase tracking-label text-muted transition-colors duration-300 hover:text-white"
-        >
-          Projekt anfragen
-          <span className="font-display italic text-lg">→</span>
-        </a>
       </div>
 
       {/* List */}
@@ -78,16 +45,20 @@ export default function ProjectsSection() {
         className="border-t border-border"
       >
         {projects.map((project) => (
-          <motion.a
+          <motion.div
             key={project.name}
-            href="#kontakt"
             variants={row}
             data-cursor="grow"
             className="group relative flex items-center gap-6 border-b border-border py-8 transition-colors duration-300 hover:bg-white/[0.025] md:gap-10 md:py-10 lg:py-12"
           >
+            <Link
+              href={`/projekte/${project.slug}`}
+              className="absolute inset-0"
+              aria-label={`${project.name} öffnen`}
+            />
             {/* Index */}
             <span className="hidden w-10 flex-none font-label text-[10px] tracking-label text-muted/40 md:block">
-              {project.index}
+              {project.category}
             </span>
 
             {/* Name + description */}
@@ -123,7 +94,7 @@ export default function ProjectsSection() {
             <span className="flex-none -translate-x-2 font-display text-2xl italic text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
               →
             </span>
-          </motion.a>
+          </motion.div>
         ))}
       </motion.div>
     </section>

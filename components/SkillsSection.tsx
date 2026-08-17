@@ -5,28 +5,24 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const skillBlocks = [
   {
-    index: "01",
-    category: "BACKEND",
-    title: "Backend",
-    description: "Saubere Logik, stabile Schnittstellen und Datenflüsse.",
+    category: "ENGINEERING",
+    title: "Backend-Systeme",
+    description: "Saubere Logik, stabile APIs und robuste Datenflüsse.",
     tags: ["Java", "Python"],
   },
   {
-    index: "02",
-    category: "FRONTEND",
+    category: "ENGINEERING",
     title: "Webentwicklung",
     description: "Modernes Frontend und robuste Umsetzung.",
     tags: ["React", "Next.js", "Tailwind"],
   },
   {
-    index: "03",
-    category: "UI/UX",
+    category: "DESIGN",
     title: "UI/UX Design",
     description: "Klare Interfaces mit starker visueller Sprache.",
     tags: ["Figma", "Prototyp", "Systeme"],
   },
   {
-    index: "04",
     category: "TOOLING",
     title: "Entwicklungs-Tools",
     description: "Schnelle Iteration mit modernen Werkzeugen.",
@@ -104,23 +100,10 @@ export default function SkillsSection() {
                 className="group relative flex-none border border-border bg-black flex flex-col overflow-hidden"
                 style={{ width: "clamp(260px, 32vw, 480px)" }}
               >
-                {/* Faint background index */}
-                <div
-                  className="absolute bottom-0 right-2 leading-none select-none pointer-events-none"
-                  aria-hidden
-                >
-                  <span className="font-display italic leading-[0.75] text-[20rem] text-white/[0.03]">
-                    {block.index}
-                  </span>
-                </div>
-
                 {/* Top bar */}
                 <div className="flex items-start justify-between border-b border-border/40 px-7 py-5">
                   <span className="font-label text-[10px] uppercase tracking-label text-muted">
                     {block.category}
-                  </span>
-                  <span className="font-label text-[10px] tracking-label text-muted">
-                    {block.index}
                   </span>
                 </div>
 
