@@ -1,5 +1,4 @@
 import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
 import HeroBanner from "@/components/HeroBanner";
 import Nav from "@/components/Nav";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -14,7 +13,6 @@ export default function Home() {
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
-        <ContactSection />
       </main>
     </>
   );

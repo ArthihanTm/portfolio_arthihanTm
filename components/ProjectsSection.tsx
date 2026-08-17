@@ -27,9 +27,6 @@ export default function ProjectsSection() {
       {/* Header */}
       <div className="mb-16 flex items-end justify-between gap-8">
         <div>
-          <p className="font-label text-[11px] uppercase tracking-label text-muted">
-            Portfolio
-          </p>
           <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] italic leading-[0.95]">
             Projektübersicht
           </h2>

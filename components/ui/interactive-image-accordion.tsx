@@ -6,6 +6,7 @@ import type {
   ImageAccordionItemData,
   InteractiveImageAccordionProps,
 } from "@/types/image-accordion";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export type { ImageAccordionItemData, InteractiveImageAccordionProps };
 
@@ -95,7 +96,7 @@ export default function InteractiveImageAccordion({
   headline = "",
   description,
   ctaLabel,
-  ctaHref = "#kontakt",
+  ctaHref = `mailto:${CONTACT_EMAIL}`,
   initialActiveIndex = 0,
 }: InteractiveImageAccordionProps) {
   const safeIndex = Math.min(
@@ -216,7 +217,7 @@ export function LandingAccordionItem() {
       headline="Accelerate Gen-AI Tasks on Any Device"
       description="Build high-performance AI apps on-device without the hassle of model compression or edge deployment."
       ctaLabel="Contact Us"
-      ctaHref="#kontakt"
+      ctaHref={`mailto:${CONTACT_EMAIL}`}
       initialActiveIndex={4}
     />
   );

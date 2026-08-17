@@ -9,14 +9,19 @@ export default function PageLoader() {
   const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
-    const hasSeenLoader = sessionStorage.getItem(SESSION_KEY);
+    let hasSeenLoader = false;
+    try {
+      hasSeenLoader = sessionStorage.getItem(SESSION_KEY) === "true";
+    } catch {
+      hasSeenLoader = false;
+    }
 
     if (hasSeenLoader) {
+      setIsVisible(false);
       return;
     }
 
     setIsVisible(true);
-    sessionStorage.setItem(SESSION_KEY, "true");
 
     const leaveTimer = window.setTimeout(() => {
       setIsLeaving(true);
@@ -24,6 +29,11 @@ export default function PageLoader() {
 
     const hideTimer = window.setTimeout(() => {
       setIsVisible(false);
+      try {
+        sessionStorage.setItem(SESSION_KEY, "true");
+      } catch {
+        // Ignore unavailable storage (private mode, embedded preview).
+      }
     }, 1100);
 
     return () => {
