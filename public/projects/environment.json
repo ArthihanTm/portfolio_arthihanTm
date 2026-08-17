@@ -1,0 +1,4 @@
+{
+  "name": "arthihan-portfolio",
+  "install": "npm ci"
+}
