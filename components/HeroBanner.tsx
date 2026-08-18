@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { useMemo } from "react";
+import { SmokeCard } from "@/components/ui/smoke-card";
 import { usePortfolioAnimations } from "@/lib/animations";
 
 const fadeEase = [0.22, 1, 0.36, 1] as const;
@@ -45,10 +46,9 @@ export default function HeroBanner() {
   const variantsLinks = useMemo(() => fadeUpWithDelay(fadeUp, 0.2), [fadeUp]);
 
   return (
-    <section
-      id="startseite"
-      className="relative flex min-h-screen items-center justify-center px-6 py-24 md:px-10 lg:px-16"
-    >
+    <section className="relative flex h-full min-h-svh items-center justify-center overflow-hidden px-6 py-24 md:px-10 lg:px-16">
+      <SmokeCard className="pointer-events-none absolute inset-0 z-10 h-full w-full bg-transparent" />
+
       <div className="mx-auto grid w-full max-w-[960px] grid-cols-1 justify-items-center text-center [grid-template-areas:'name'_'sub'_'links']">
         <h1 className="w-full max-w-[960px] select-none font-display text-[clamp(4.5rem,12vw,10rem)] italic leading-[0.88] text-white [grid-area:name]">
           Arthihan

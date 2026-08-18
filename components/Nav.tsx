@@ -64,7 +64,7 @@ export default function Nav() {
 
   return (
     <motion.nav
-      className="sticky top-0 z-50 bg-black"
+      className="fixed inset-x-0 top-0 z-50 bg-black"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: show ? 1 : 0, y: show ? 0 : -20 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}

@@ -4,11 +4,13 @@
 
 :root {
   color-scheme: dark;
+  --mouse-sparkles-glow-rgb: 255 255 255;
 }
 
 html {
   scroll-behavior: smooth;
   background: #000000;
+  overflow-x: hidden;
 }
 
 /*
@@ -83,20 +85,6 @@ textarea:focus-visible {
   }
 }
 
-@keyframes scroll-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
-}
-
-.scroll-bounce {
-  animation: scroll-bounce 1.8s ease-in-out infinite;
-}
-
 /* Hide scrollbar for horizontal scroll tracks */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
@@ -109,10 +97,6 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .scroll-bounce {
-    animation: none;
   }
 }
 

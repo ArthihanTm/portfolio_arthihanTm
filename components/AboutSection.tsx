@@ -1,4 +1,5 @@
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { cn } from "@/lib/utils";
 
 const facts = [
   {
@@ -19,11 +20,17 @@ const facts = [
   },
 ];
 
-export default function AboutSection() {
+export default function AboutSection({
+  className,
+}: {
+  className?: string;
+}) {
   return (
     <section
-      id="uber-mich"
-      className="border-t border-border px-6 py-24 md:px-10 md:py-32 lg:px-16"
+      className={cn(
+        "border-t border-border px-6 py-24 md:px-10 md:py-32 lg:px-16",
+        className,
+      )}
     >
       <div className="mx-auto max-w-[1440px]">
         <h2 className="mt-4 max-w-3xl font-display text-[clamp(3rem,8vw,5rem)] italic leading-[0.95]">

@@ -1,5 +1,4 @@
-import AboutSection from "@/components/AboutSection";
-import HeroBanner from "@/components/HeroBanner";
+import HeroAboutScroll from "@/components/HeroAboutScroll";
 import Nav from "@/components/Nav";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
@@ -9,8 +8,7 @@ export default function Home() {
     <>
       <Nav />
       <main>
-        <HeroBanner />
-        <AboutSection />
+        <HeroAboutScroll />
         <SkillsSection />
         <ProjectsSection />
       </main>
