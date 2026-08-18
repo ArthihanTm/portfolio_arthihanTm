@@ -10,6 +10,7 @@ import {
 } from "framer-motion";
 import AboutSection from "@/components/AboutSection";
 import HeroBanner from "@/components/HeroBanner";
+import { SmokeCard } from "@/components/ui/smoke-card";
 
 export default function HeroAboutScroll() {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ export default function HeroAboutScroll() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
   const syncAboutLock = (latest: number) => {
-    const reached = latest >= 0.99;
+    const reached = latest >= 0.98;
     setHasReachedAbout(reached);
 
     if (!reached && aboutPanelRef.current) {
@@ -62,22 +63,23 @@ export default function HeroAboutScroll() {
       />
 
       <div className="sticky top-0 h-svh overflow-hidden">
+        <SmokeCard
+          active={!hasReachedAbout}
+          scrollProgress={scrollYProgress}
+          className="pointer-events-none absolute inset-0 z-20 h-full w-full bg-transparent"
+        />
         <motion.div
           className="flex h-full w-[200vw] will-change-transform"
           style={{ x }}
         >
           <div className="h-full w-screen shrink-0 overflow-hidden">
-            <HeroBanner />
+            <HeroBanner showSmoke={false} />
           </div>
           <div
             ref={aboutPanelRef}
-            className={
-              hasReachedAbout
-                ? "h-full w-screen shrink-0 overflow-y-auto overscroll-y-auto"
-                : "h-full w-screen shrink-0 overflow-hidden"
-            }
+            className="h-full w-screen shrink-0 overflow-hidden"
           >
-            <AboutSection className="min-h-full border-l border-t-0" />
+            <AboutSection className="h-full min-h-0 border-l border-t-0" />
           </div>
         </motion.div>
       </div>
