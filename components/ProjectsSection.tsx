@@ -24,7 +24,6 @@ export default function ProjectsSection() {
       id="projekte"
       className="border-t border-border px-6 py-20 md:px-10 md:py-28 lg:px-16"
     >
-      {/* Header */}
       <motion.div
         className="mb-16 flex items-end justify-between gap-8"
         initial="hidden"
@@ -39,7 +38,6 @@ export default function ProjectsSection() {
         </div>
       </motion.div>
 
-      {/* List */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -47,56 +45,36 @@ export default function ProjectsSection() {
         viewport={{ once: true, amount: 0.1 }}
         className="border-t border-border"
       >
-        {projects.map((project) => (
-          <motion.div
-            key={project.name}
-            variants={row}
-            data-cursor="grow"
-            className="group relative flex items-center gap-6 border-b border-border py-8 transition-colors duration-300 hover:bg-white/[0.025] md:gap-10 md:py-10 lg:py-12"
-          >
+        {projects.map((project, index) => (
+          <motion.div key={project.slug} variants={row}>
             <Link
               href={`/projekte/${project.slug}`}
-              className="absolute inset-0"
-              aria-label={`${project.name} öffnen`}
-            />
-            {/* Index */}
-            <span className="hidden w-10 flex-none font-label text-[10px] tracking-label text-muted/40 md:block">
-              {project.category}
-            </span>
+              data-cursor="grow"
+              className="group flex items-center gap-6 border-b border-border py-8 transition-colors duration-300 hover:bg-white/[0.025] md:gap-10 md:py-10 lg:py-12"
+            >
+              <span className="w-10 flex-none font-label text-[10px] tracking-label text-muted/40">
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-            {/* Name + description */}
-            <div className="flex min-w-0 flex-1 flex-col gap-2">
-              <p className="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-bold italic leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+              <span className="min-w-0 flex-1 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-bold italic leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
                 {project.name}
-              </p>
-              <p className="font-label text-[10px] uppercase tracking-label text-muted/50 transition-colors duration-300 group-hover:text-muted sm:hidden">
+              </span>
+
+              <span className="hidden flex-none font-label text-[10px] tracking-label text-muted/40 sm:block">
                 {project.year}
-              </p>
-            </div>
+              </span>
 
-            {/* Tags */}
-            <div className="hidden flex-none gap-2 lg:flex">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-border px-3 py-1.5 font-label text-[10px] uppercase tracking-label text-white/40 transition-colors duration-300 group-hover:border-white/20 group-hover:text-white/70"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Category + year */}
-            <div className="hidden flex-none text-right sm:block">
-              <p className="mt-1 font-label text-[10px] tracking-label text-muted/40">
+              <span className="font-label text-[10px] uppercase tracking-label text-muted/50 sm:hidden">
                 {project.year}
-              </p>
-            </div>
+              </span>
 
-            {/* Arrow */}
-            <span className="flex-none -translate-x-3 font-display text-2xl italic text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100">
-              →
-            </span>
+              <span
+                aria-hidden="true"
+                className="flex-none -translate-x-3 font-display text-2xl italic text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100"
+              >
+                →
+              </span>
+            </Link>
           </motion.div>
         ))}
       </motion.div>
