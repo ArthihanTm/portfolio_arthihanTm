@@ -25,13 +25,19 @@ export default function ProjectsSection() {
       className="border-t border-border px-6 py-20 md:px-10 md:py-28 lg:px-16"
     >
       {/* Header */}
-      <div className="mb-16 flex items-end justify-between gap-8">
+      <motion.div
+        className="mb-16 flex items-end justify-between gap-8"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={row}
+      >
         <div>
-          <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] italic leading-[0.95]">
+          <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold italic leading-[0.95]">
             Projektübersicht
           </h2>
         </div>
-      </div>
+      </motion.div>
 
       {/* List */}
       <motion.div
@@ -60,7 +66,7 @@ export default function ProjectsSection() {
 
             {/* Name + description */}
             <div className="flex min-w-0 flex-1 flex-col gap-2">
-              <p className="font-display text-[clamp(2rem,4.5vw,3.75rem)] italic leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+              <p className="font-display text-[clamp(2rem,4.5vw,3.75rem)] font-bold italic leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
                 {project.name}
               </p>
               <p className="font-label text-[10px] uppercase tracking-label text-muted/50 transition-colors duration-300 group-hover:text-muted sm:hidden">
@@ -88,7 +94,7 @@ export default function ProjectsSection() {
             </div>
 
             {/* Arrow */}
-            <span className="flex-none -translate-x-2 font-display text-2xl italic text-white opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+            <span className="flex-none -translate-x-3 font-display text-2xl italic text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100">
               →
             </span>
           </motion.div>

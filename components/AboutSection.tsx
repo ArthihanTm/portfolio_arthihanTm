@@ -1,4 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { CONTACT_EMAIL } from "@/lib/contact";
+import { usePortfolioAnimations } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 const skillGroups = [
@@ -33,6 +37,9 @@ export default function AboutSection({
 }: {
   className?: string;
 }) {
+  const { fadeUp, slideInLeft, slideInRight, stagger } =
+    usePortfolioAnimations();
+
   return (
     <section
       className={cn(
@@ -40,13 +47,25 @@ export default function AboutSection({
         className,
       )}
     >
-      <div className="mx-auto flex h-full w-full min-h-0 max-w-[1440px] flex-col">
-        <h2 className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] italic leading-[0.95]">
+      <motion.div
+        className="mx-auto flex h-full w-full min-h-0 max-w-[1440px] flex-col"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15 }}
+        variants={stagger}
+      >
+        <motion.h2
+          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold italic leading-[0.95]"
+          variants={fadeUp}
+        >
           Über mich.
-        </h2>
+        </motion.h2>
 
         <div className="mt-10 grid min-h-0 flex-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
-          <div className="space-y-6 text-base leading-8 text-white/92 md:text-lg md:leading-9">
+          <motion.div
+            className="space-y-6 text-base leading-8 text-white/92 md:text-lg md:leading-9"
+            variants={slideInLeft}
+          >
             <p>
               Ich bin neugierig darauf, wie Dinge unter der Oberfläche
               funktionieren, und das treibt mich seit meiner Schulzeit an.
@@ -64,9 +83,13 @@ export default function AboutSection({
               Dinge, bei denen Übung und Präzision zählen, genau wie beim
               Programmieren.
             </p>
-          </div>
+          </motion.div>
 
-          <div id="kompetenzen" className="flex min-h-0 flex-col">
+          <motion.div
+            id="kompetenzen"
+            className="flex min-h-0 flex-col"
+            variants={slideInRight}
+          >
             <div className="flex items-end justify-between gap-4">
               <h3 className="font-label text-[11px] uppercase tracking-label text-muted">
                 Kompetenzen
@@ -122,9 +145,9 @@ export default function AboutSection({
                 {CONTACT_EMAIL}
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

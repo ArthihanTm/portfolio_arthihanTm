@@ -69,21 +69,31 @@ export default function CustomCursor() {
     return null;
   }
 
-  const size = isHovering ? 24 : 8;
-
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[70] block bg-white"
+      className="pointer-events-none fixed left-0 top-0 z-[70] block rounded-full mix-blend-difference"
       style={{
-        width: size,
-        height: size,
-        borderRadius: "999px",
         x: mouseX,
         y: mouseY,
         translateX: "-50%",
         translateY: "-50%",
+      }}
+      animate={{
+        width: isHovering ? 48 : 8,
+        height: isHovering ? 48 : 8,
         opacity: isVisible ? 1 : 0,
+        backgroundColor: isHovering
+          ? "rgba(255,255,255,0.15)"
+          : "rgba(255,255,255,1)",
+        borderWidth: isHovering ? 1.5 : 0,
+        borderColor: "rgba(255,255,255,0.6)",
+      }}
+      transition={{
+        width: { type: "spring", stiffness: 350, damping: 25 },
+        height: { type: "spring", stiffness: 350, damping: 25 },
+        opacity: { duration: 0.15 },
+        backgroundColor: { duration: 0.25 },
       }}
     />
   );

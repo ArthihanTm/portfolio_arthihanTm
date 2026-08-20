@@ -1,23 +1,15 @@
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import localFont from "next/font/local";
+import { Playfair_Display } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 
-export const displayFont = Cormorant_Garamond({
+export const displayFont = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "700", "900"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-export const bodyFont = Inter({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["300", "400"],
-  display: "swap",
-});
+export const bodyFont = GeistSans;
 
-export const labelFont = Inter({
-  variable: "--font-label",
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  display: "swap",
-});
+export const labelFont = GeistSans;

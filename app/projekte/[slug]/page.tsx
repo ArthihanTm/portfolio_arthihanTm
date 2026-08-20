@@ -27,7 +27,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           </span>
         </div>
 
-        <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] italic leading-[0.95]">
+        <h1 className="font-display text-[clamp(3rem,7vw,5.5rem)] font-black italic leading-[0.95]">
           {project.name}
         </h1>
         <p className="mt-8 max-w-2xl text-base leading-8 text-white/85 md:text-lg">
@@ -76,7 +76,7 @@ export default async function ProjectDetailPage({ params }: Props) {
 
         {project.details?.length ? (
           <div className="mt-16 border-t border-border pt-10">
-            <h2 className="font-display text-3xl italic leading-tight">
+            <h2 className="font-display text-3xl font-bold italic leading-tight">
               Kurzüberblick
             </h2>
             <ul className="mt-6 space-y-3 text-base leading-8 text-white/80">

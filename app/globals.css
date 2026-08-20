@@ -31,7 +31,7 @@ body {
   min-height: 100vh;
   background: #000000;
   color: #ffffff;
-  font-family: var(--font-body), sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
   font-weight: 300;
   text-rendering: optimizeLegibility;
 }
@@ -77,11 +77,11 @@ textarea:focus-visible {
   }
 
   .font-body {
-    font-family: var(--font-body), sans-serif;
+    font-family: var(--font-geist-sans), sans-serif;
   }
 
   .font-label {
-    font-family: var(--font-label), sans-serif;
+    font-family: var(--font-geist-sans), sans-serif;
   }
 }
 

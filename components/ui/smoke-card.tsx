@@ -54,7 +54,6 @@ const SmokeCard = ({
     if (!active) {
       mousePosRef.current = { x: 0, y: 0 };
       lastMouseRef.current = null;
-      particlesRef.current = [];
     }
   }, [active]);
 
@@ -112,14 +111,9 @@ const SmokeCard = ({
       const mouse = mousePosRef.current;
 
       if (!activeRef.current || reachedAbout) {
-        particlesRef.current = [];
         lastMouseRef.current = null;
         lastProgressRef.current = progress;
-        animationFrameRef.current = requestAnimationFrame(animate);
-        return;
-      }
-
-      if (mouse.x !== 0 && mouse.y !== 0) {
+      } else if (mouse.x !== 0 && mouse.y !== 0) {
         const lastMouse = lastMouseRef.current;
         const lastProgress = lastProgressRef.current;
         const contentDeltaX =
@@ -176,12 +170,6 @@ const SmokeCard = ({
     };
 
     const onPointerMove = (event: PointerEvent) => {
-      if (!activeRef.current) {
-        mousePosRef.current = { x: 0, y: 0 };
-        lastMouseRef.current = null;
-        return;
-      }
-
       const rect = canvas.getBoundingClientRect();
       const inside =
         event.clientX >= rect.left &&
