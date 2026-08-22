@@ -1,6 +1,4 @@
-import localFont from "next/font/local";
-import { Playfair_Display } from "next/font/google";
-import { GeistSans } from "geist/font/sans";
+import { Manrope, Playfair_Display } from "next/font/google";
 
 export const displayFont = Playfair_Display({
   variable: "--font-display",
@@ -10,6 +8,11 @@ export const displayFont = Playfair_Display({
   display: "swap",
 });
 
-export const bodyFont = GeistSans;
+export const bodyFont = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
+});
 
-export const labelFont = GeistSans;
+export const labelFont = bodyFont;

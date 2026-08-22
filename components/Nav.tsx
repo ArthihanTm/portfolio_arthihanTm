@@ -4,9 +4,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-  { href: "#startseite", label: "Startseite" },
-  { href: "#uber-mich", label: "Über Mich" },
-  { href: "#projekte", label: "Projekte" },
+  { href: "/#startseite", label: "Startseite" },
+  { href: "/#uber-mich", label: "Über Mich" },
+  { href: "/#projekte", label: "Projekte" },
 ];
 
 const HIDE_DELAY = 2500;

@@ -9,9 +9,9 @@ export const projectImageAccordionItems: ImageAccordionItemData[] = [
   },
   {
     id: 2,
-    title: "VeritasNews",
+    title: "Relaunch.ai",
     imageUrl:
-      "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1200&q=80&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&auto=format&fit=crop",
   },
   {
     id: 3,

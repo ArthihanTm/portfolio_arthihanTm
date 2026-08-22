@@ -1,3 +1,5 @@
+import { relaunchPipelineMermaid } from "@/lib/relaunch-pipeline";
+
 export type Project = {
   slug: string;
   year: string;
@@ -10,6 +12,8 @@ export type Project = {
     live?: string;
   };
   details?: string[];
+  /** Optional Mermaid source shown on the detail page */
+  mermaid?: string;
 };
 
 export const projects: Project[] = [
@@ -29,16 +33,18 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "veritasnews",
-    year: "2024",
-    category: "WEB APP",
-    name: "VeritasNews",
-    description: "Nachrichtenplattform mit kuratiertem Content-Feed.",
-    tags: ["React", "TypeScript", "API"],
+    slug: "relaunch-ai",
+    year: "2026",
+    category: "PIPELINE",
+    name: "Relaunch.ai",
+    description:
+      "Relaunch.ai zieht sich Schweizer Firmen direkt aus dem Handelsregister und baut ihnen unaufgefordert einen neuen Website-Entwurf, bevor sie überhaupt wissen, dass sie kontaktiert werden. Die Pipeline sucht zu jeder Firma aus dem Zefix-Register Website und Mailadresse, crawlt die bestehende Seite, lässt ein LLM ihre Qualität einschätzen und generiert daraus einen Mockup-Relaunch. Statt eines klassischen Kaltakquise-Pitches bekommt die Firma direkt das fertige Ergebnis zugeschickt, live deployed auf Vercel.",
+    tags: ["Python", "Firecrawl", "Resend", "Vercel"],
     details: [
-      "Content-Feed mit Fokus auf Lesbarkeit.",
-      "Saubere Datenanbindung über API-Schicht.",
+      "Pipeline in Python von Datenerfassung bis Mailversand: Zefix-Scraping, Anreicherung über Exa, Crawling mit Firecrawl, Analyse und Generierung per LLM, Deployment und Versand über Resend.",
+      "Das alte Next.js/FastAPI-Dashboard wird abgelöst — Steuerung nur noch über eine Terminal-CLI, ohne Frontend das extra gepflegt werden muss.",
     ],
+    mermaid: relaunchPipelineMermaid,
   },
   {
     slug: "luckiipage",
