@@ -31,7 +31,7 @@ body {
   min-height: 100vh;
   background: #000000;
   color: #ffffff;
-  font-family: var(--font-outfit), sans-serif;
+  font-family: var(--font-satoshi), sans-serif;
   font-weight: 400;
   letter-spacing: -0.01em;
   text-rendering: optimizeLegibility;
@@ -74,16 +74,16 @@ textarea:focus-visible {
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-outfit), sans-serif;
+    font-family: var(--font-satoshi), sans-serif;
     letter-spacing: -0.035em;
   }
 
   .font-body {
-    font-family: var(--font-outfit), sans-serif;
+    font-family: var(--font-satoshi), sans-serif;
   }
 
   .font-label {
-    font-family: var(--font-outfit), sans-serif;
+    font-family: var(--font-satoshi), sans-serif;
     font-weight: 500;
   }
 }

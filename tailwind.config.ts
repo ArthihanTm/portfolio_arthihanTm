@@ -15,6 +15,10 @@ const config: Config = {
         border: "#222222",
         hover: "#111111",
       },
+      fontFamily: {
+        sans: ["var(--font-satoshi)", "sans-serif"],
+        display: ["var(--font-satoshi)", "sans-serif"],
+      },
       letterSpacing: {
         label: "0.24em",
       },
