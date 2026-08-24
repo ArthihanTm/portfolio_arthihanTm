@@ -46,7 +46,7 @@ export default function HeroBanner() {
       >
         {/* Clip-reveal the name from below */}
         <motion.h1
-          className="w-full max-w-[960px] select-none font-display text-[clamp(4.5rem,12vw,10rem)] font-black italic leading-[0.88] text-white [grid-area:name]"
+          className="w-full max-w-[960px] select-none font-display text-[clamp(4.5rem,12vw,10rem)] font-normal leading-[0.88] text-white [grid-area:name]"
           variants={
             prefersReducedMotion
               ? { hidden: {}, show: {} }

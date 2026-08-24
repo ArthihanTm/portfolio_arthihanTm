@@ -56,7 +56,7 @@ export default function ProjectDetailView({ project }: Props) {
           {/* Hero title */}
           <div className="overflow-hidden">
             <motion.h1
-              className="max-w-[16ch] font-display text-[clamp(3.25rem,9vw,6.5rem)] font-black italic leading-[0.9] tracking-tight"
+              className="max-w-[16ch] font-display text-[clamp(3.25rem,9vw,6.5rem)] font-normal leading-[0.9] tracking-tight"
               variants={
                 prefersReducedMotion
                   ? fadeUp
@@ -126,7 +126,7 @@ export default function ProjectDetailView({ project }: Props) {
                         className="group inline-flex items-center gap-3 font-label text-[11px] uppercase tracking-label text-muted transition-colors duration-300 hover:text-white"
                       >
                         Live ansehen
-                        <span className="font-display text-lg italic transition-transform duration-300 group-hover:translate-x-1">
+                        <span className="font-display text-lg transition-transform duration-300 group-hover:translate-x-1">
                           →
                         </span>
                       </a>
@@ -140,7 +140,7 @@ export default function ProjectDetailView({ project }: Props) {
                         className="group inline-flex items-center gap-3 font-label text-[11px] uppercase tracking-label text-muted transition-colors duration-300 hover:text-white"
                       >
                         GitHub
-                        <span className="font-display text-lg italic transition-transform duration-300 group-hover:translate-x-1">
+                        <span className="font-display text-lg transition-transform duration-300 group-hover:translate-x-1">
                           →
                         </span>
                       </a>
@@ -167,7 +167,7 @@ export default function ProjectDetailView({ project }: Props) {
                 Überblick
               </motion.p>
               <motion.h2
-                className="mt-3 font-display text-[clamp(2rem,4vw,3rem)] font-bold italic leading-tight"
+                className="mt-3 font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-tight"
                 variants={fadeUp}
               >
                 Was das Projekt macht.
@@ -208,7 +208,7 @@ export default function ProjectDetailView({ project }: Props) {
                 System
               </motion.p>
               <motion.h2
-                className="mt-3 font-display text-[clamp(2rem,4vw,3rem)] font-bold italic leading-tight"
+                className="mt-3 font-display text-[clamp(2rem,4vw,3rem)] font-normal leading-tight"
                 variants={fadeUp}
               >
                 Pipeline.

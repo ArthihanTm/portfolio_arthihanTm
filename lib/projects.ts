@@ -46,18 +46,6 @@ export const projects: Project[] = [
     ],
     mermaid: relaunchPipelineMermaid,
   },
-  {
-    slug: "luckiipage",
-    year: "2023",
-    category: "BRANDING",
-    name: "LuckiiPage",
-    description: "Markenpräsenz und Landingpage für ein kreatives Label.",
-    tags: ["Next.js", "Figma", "Framer"],
-    details: [
-      "Landingpage mit starker visueller Sprache.",
-      "Komponentenbasiertes Layout für schnelle Iteration.",
-    ],
-  },
 ];
 
 export function getProjectBySlug(slug: string) {

@@ -31,7 +31,7 @@ body {
   min-height: 100vh;
   background: #000000;
   color: #ffffff;
-  font-family: var(--font-manrope), sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   font-weight: 400;
   letter-spacing: -0.01em;
   text-rendering: optimizeLegibility;
@@ -74,15 +74,16 @@ textarea:focus-visible {
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-display), serif;
+    font-family: var(--font-outfit), sans-serif;
+    letter-spacing: -0.035em;
   }
 
   .font-body {
-    font-family: var(--font-manrope), sans-serif;
+    font-family: var(--font-outfit), sans-serif;
   }
 
   .font-label {
-    font-family: var(--font-manrope), sans-serif;
+    font-family: var(--font-outfit), sans-serif;
     font-weight: 500;
   }
 }
@@ -96,9 +97,81 @@ textarea:focus-visible {
   scrollbar-width: none;
 }
 
+@keyframes places-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes places-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.places-track {
+  animation: places-marquee 80s linear infinite;
+  will-change: transform;
+}
+
+.places-track-reverse {
+  animation-direction: reverse;
+}
+
+.places-photo {
+  animation: places-kenburns 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.places-marquee:hover .places-track,
+.places-marquee:hover .places-photo,
+.places-marquee[data-paused] .places-track,
+.places-marquee[data-paused] .places-photo {
+  animation-play-state: paused;
+}
+
+.places-marquee {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+.places-lightbox-backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition:
+    background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-backdrop-filter 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: backdrop-filter, background-color;
+  transform: translateZ(0);
+}
+
+.places-lightbox-backdrop-on {
+  background-color: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .places-track,
+  .places-photo {
+    animation: none;
   }
 }
 

@@ -32,7 +32,7 @@ export default function ProjectsSection() {
         variants={row}
       >
         <div>
-          <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold italic leading-[0.95]">
+          <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] font-normal leading-[0.95]">
             Projektübersicht
           </h2>
         </div>
@@ -56,7 +56,7 @@ export default function ProjectsSection() {
                 {String(index + 1).padStart(2, "0")}
               </span>
 
-              <span className="min-w-0 flex-1 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-bold italic leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+              <span className="min-w-0 flex-1 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-normal leading-[0.95] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
                 {project.name}
               </span>
 
@@ -70,7 +70,7 @@ export default function ProjectsSection() {
 
               <span
                 aria-hidden="true"
-                className="flex-none -translate-x-3 font-display text-2xl italic text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100"
+                className="flex-none -translate-x-3 font-display text-2xl text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100"
               >
                 →
               </span>

@@ -44,9 +44,8 @@ export default function CustomCursor() {
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
-      const buttonTarget = target.closest("button,[data-button='true']");
       const hoverTarget = target.closest("[data-cursor='grow']");
-      const next = Boolean(hoverTarget && !buttonTarget);
+      const next = Boolean(hoverTarget);
 
       if (next !== hoveringRef.current) {
         hoveringRef.current = next;
@@ -72,7 +71,7 @@ export default function CustomCursor() {
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[70] block rounded-full mix-blend-difference"
+      className="pointer-events-none fixed left-0 top-0 z-[200] block rounded-full mix-blend-difference"
       style={{
         x: mouseX,
         y: mouseY,

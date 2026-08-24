@@ -55,7 +55,7 @@ export default function AboutSection({
         variants={stagger}
       >
         <motion.h2
-          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold italic leading-[0.95]"
+          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[0.95]"
           variants={fadeUp}
         >
           Über mich.
@@ -68,20 +68,19 @@ export default function AboutSection({
           >
             <p>
               Ich bin neugierig darauf, wie Dinge unter der Oberfläche
-              funktionieren, und das treibt mich seit meiner Schulzeit an.
-              Besonders faszinierend finde ich, wie rasant sich die
-              Softwareentwicklung gerade durch KI verändert, und ich bin
-              gespannt, was diese Entwicklung als Nächstes ermöglicht.
+              funktionieren, und das treibt mich schon seit der Schulzeit an.
+              Wenn ich an etwas Schwierigem dran bin, lasse ich es nicht halb
+              fertig liegen. Ich bin eher der Typ, der eine Sache zuerst
+              richtig abschliesst, bevor er sich der nächsten widmet. Das
+              nervt mich manchmal selbst, aber ändern kann ich daran nichts.
             </p>
             <p className="text-white/80">
-              Aus dieser Neugier sind eigene Projekte entstanden, an denen ich
-              selbstständig arbeite und bei denen mir sauberer Code genauso
-              wichtig ist wie ein durchdachtes Design. Ich lerne aktuell an
-              der Informatikmittelschule (IMS) und nehme mir dabei genauso
-              viel Zeit für Struktur und Wartbarkeit wie fürs Design selbst.
-              Ausserhalb von Code beschäftigen mich Sport und Geige, beides
-              Dinge, bei denen Übung und Präzision zählen, genau wie beim
-              Programmieren.
+              Seit zehn Jahren spiele ich Geige. Damit schalte ich den Kopf
+              ab, wenn Schule oder Code zu viel Platz einnehmen. Seit etwa
+              einem Jahr trainiere ich ausserdem regelmässig im Gym. Das hat
+              mir vor allem Disziplin beigebracht. Nebenbei lerne ich an der
+              Informatikmittelschule (IMS), aber wer ich bin, zeigt sich eher
+              in solchen Dingen als in meinem Stundenplan.
             </p>
           </motion.div>
 

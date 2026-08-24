@@ -1,18 +1,12 @@
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Outfit } from "next/font/google";
 
-export const displayFont = Playfair_Display({
-  variable: "--font-display",
+export const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
-  style: ["normal", "italic"],
+  weight: ["300", "400", "500"],
   display: "swap",
 });
 
-export const bodyFont = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-export const labelFont = bodyFont;
+export const displayFont = outfit;
+export const bodyFont = outfit;
+export const labelFont = outfit;

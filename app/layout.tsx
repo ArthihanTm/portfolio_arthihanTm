@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import PageLoader from "@/components/PageLoader";
-import { displayFont, bodyFont } from "@/lib/fonts";
+import { outfit } from "@/lib/fonts";
 
 export default function RootLayout({
   children,
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${displayFont.variable} ${bodyFont.variable}`}
+      className={outfit.variable}
     >
       <body className="bg-black text-white antialiased">
         <PageLoader />

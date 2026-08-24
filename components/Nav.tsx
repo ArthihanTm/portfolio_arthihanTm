@@ -7,6 +7,7 @@ const navLinks = [
   { href: "/#startseite", label: "Startseite" },
   { href: "/#uber-mich", label: "Über Mich" },
   { href: "/#projekte", label: "Projekte" },
+  { href: "/#orte", label: "Orte" },
 ];
 
 const HIDE_DELAY = 2500;
