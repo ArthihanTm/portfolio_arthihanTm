@@ -16,7 +16,6 @@
 
 # misc
 .DS_Store
-.cursor/
 *.pem
 
 # debug
@@ -37,5 +36,6 @@ yarn-error.log*
 next-env.d.ts
 
 # cursor
-.cursor/
+.cursor/*
+!.cursor/environment.json
 .vscode/
