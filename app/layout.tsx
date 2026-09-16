@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 import PageLoader from "@/components/PageLoader";
-import { satoshi } from "@/lib/fonts";
+import { satoshi, monoFont } from "@/lib/fonts";
 
 export default function RootLayout({
   children,
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={satoshi.variable}
+      className={`${satoshi.variable} ${monoFont.variable}`}
     >
       <body className="bg-black text-white antialiased">
         <PageLoader />

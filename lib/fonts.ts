@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { JetBrains_Mono } from "next/font/google";
 
 export const satoshi = localFont({
   src: [
@@ -19,4 +20,12 @@ export const satoshi = localFont({
 
 export const displayFont = satoshi;
 export const bodyFont = satoshi;
-export const labelFont = satoshi;
+
+export const monoFont = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+export const labelFont = monoFont;

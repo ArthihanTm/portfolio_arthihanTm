@@ -6,6 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 /** Monorepo/Parent-`package-lock.json`: sonst kann Next den falschen Root wählen und Build/Styles abbrechen. */
 const nextConfig = {
   outputFileTracingRoot: __dirname,
+  devIndicators: false,
 };
 
 export default nextConfig;

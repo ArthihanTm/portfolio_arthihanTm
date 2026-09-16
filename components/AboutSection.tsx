@@ -55,7 +55,7 @@ export default function AboutSection({
         variants={stagger}
       >
         <motion.h2
-          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-normal leading-[0.95]"
+          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
           variants={fadeUp}
         >
           Über mich.
