@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 const DEFAULT_IMAGE =
   "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&auto=format&fit=crop&q=70";
@@ -109,6 +109,10 @@ export default function DitherReveal(props: DitherRevealProps) {
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const glRef = useRef<WebGLRenderingContext | null>(null);
+  const textureRef = useRef<WebGLTexture | null>(null);
+  const imgAspectRef = useRef(1.5);
+  const [glReady, setGlReady] = useState(false);
 
   const liveRef = useRef(S);
   liveRef.current = S;
@@ -125,6 +129,7 @@ export default function DitherReveal(props: DitherRevealProps) {
       premultipliedAlpha: false,
     });
     if (!gl) return;
+    glRef.current = gl;
 
     function compile(type: number, source: string) {
       const sh = gl!.createShader(type)!;
@@ -182,6 +187,7 @@ export default function DitherReveal(props: DitherRevealProps) {
     const uFocusY = u("uFocusY");
 
     const texture = gl.createTexture();
+    textureRef.current = texture;
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D(
@@ -199,28 +205,7 @@ export default function DitherReveal(props: DitherRevealProps) {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
-    let imgAspect = 1.5;
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      if (img.naturalHeight > 0)
-        imgAspect = img.naturalWidth / img.naturalHeight;
-      gl.bindTexture(gl.TEXTURE_2D, texture);
-      try {
-        gl.texImage2D(
-          gl.TEXTURE_2D,
-          0,
-          gl.RGBA,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          img,
-        );
-      } catch {}
-    };
-    img.onerror = () =>
-      console.warn("DitherReveal: image failed to load:", imgUrl);
-    img.src = imgUrl;
+    setGlReady(true);
 
     const mouse = { x: 0.5, y: 0.5, active: 0, target: 0, entered: false };
 
@@ -277,7 +262,7 @@ export default function DitherReveal(props: DitherRevealProps) {
       gl!.uniform1f(uWaveAmplitude, L.waveAmplitude);
       gl!.uniform1f(uWaveMargin, L.waveMargin);
       gl!.uniform1f(uCanvasAspect, canvas!.width / canvas!.height);
-      gl!.uniform1f(uImageAspect, imgAspect);
+      gl!.uniform1f(uImageAspect, imgAspectRef.current);
       gl!.uniform2f(
         uResolution,
         container!.clientWidth || 1,
@@ -293,16 +278,55 @@ export default function DitherReveal(props: DitherRevealProps) {
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
-      img.onload = null;
-      img.onerror = null;
       container.removeEventListener("pointermove", onMove);
       container.removeEventListener("pointerenter", onEnter);
       container.removeEventListener("pointerleave", onLeave);
       gl.deleteProgram(program);
       gl.deleteBuffer(buffer);
       gl.deleteTexture(texture);
+      textureRef.current = null;
+      glRef.current = null;
+      setGlReady(false);
     };
-  }, [imgUrl]);
+  }, []);
+
+  useEffect(() => {
+    if (!glReady) return;
+    const gl = glRef.current;
+    const texture = textureRef.current;
+    if (!gl || !texture) return;
+
+    let cancelled = false;
+    const img = new Image();
+    img.decoding = "async";
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      if (cancelled || !glRef.current || !textureRef.current) return;
+      if (img.naturalHeight > 0) {
+        imgAspectRef.current = img.naturalWidth / img.naturalHeight;
+      }
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      try {
+        gl.texImage2D(
+          gl.TEXTURE_2D,
+          0,
+          gl.RGBA,
+          gl.RGBA,
+          gl.UNSIGNED_BYTE,
+          img,
+        );
+      } catch {}
+    };
+    img.onerror = () =>
+      console.warn("DitherReveal: image failed to load:", imgUrl);
+    img.src = imgUrl;
+
+    return () => {
+      cancelled = true;
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [imgUrl, glReady]);
 
   return (
     <div

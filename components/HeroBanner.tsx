@@ -4,17 +4,9 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import DitherReveal from "@/components/ui/dither-reveal";
 import { usePortfolioAnimations } from "@/lib/animations";
+import { HERO_IMAGES } from "@/lib/hero-images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-
-const HERO_IMAGES = [
-  "/hero-cover.jpg",
-  "/hero-wanderer.jpg",
-  "/hero-joan.jpg",
-  "/hero-alexander.jpg",
-  "/hero-athens.jpg",
-  "/hero-napoleon.png",
-] as const;
 
 const titleLines = ["Arthihan", "Thirumal"];
 
@@ -159,7 +151,7 @@ export default function HeroBanner() {
             </button>
           </div>
 
-          <div className="flex items-center justify-start gap-6">
+          <div className="pointer-events-auto flex items-center justify-start gap-6">
             {links.map((link) => (
               <a
                 key={link.label}

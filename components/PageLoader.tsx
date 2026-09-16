@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { preloadHeroImages } from "@/lib/hero-images";
 
 const SESSION_KEY = "arthihan-portfolio-loader-seen";
+const MIN_VISIBLE_MS = 600;
+const MAX_WAIT_MS = 2500;
 
 export default function PageLoader() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,27 +19,49 @@ export default function PageLoader() {
       hasSeenLoader = false;
     }
 
+    const preload = preloadHeroImages();
+
     if (hasSeenLoader) {
       setIsVisible(false);
+      void preload;
       return;
     }
 
     setIsVisible(true);
+    let leaveTimer = 0;
+    let hideTimer = 0;
+    let cancelled = false;
+    let finished = false;
+    const startedAt = performance.now();
 
-    const leaveTimer = window.setTimeout(() => {
-      setIsLeaving(true);
-    }, 600);
+    const finish = () => {
+      if (cancelled || finished) return;
+      finished = true;
+      window.clearTimeout(timeout);
+      const elapsed = performance.now() - startedAt;
+      const waitMore = Math.max(0, MIN_VISIBLE_MS - elapsed);
 
-    const hideTimer = window.setTimeout(() => {
-      setIsVisible(false);
-      try {
-        sessionStorage.setItem(SESSION_KEY, "true");
-      } catch {
-        // Ignore unavailable storage (private mode, embedded preview).
-      }
-    }, 1100);
+      leaveTimer = window.setTimeout(() => {
+        if (cancelled) return;
+        setIsLeaving(true);
+        hideTimer = window.setTimeout(() => {
+          if (cancelled) return;
+          setIsVisible(false);
+          try {
+            sessionStorage.setItem(SESSION_KEY, "true");
+          } catch {
+            // Ignore unavailable storage (private mode, embedded preview).
+          }
+        }, 500);
+      }, waitMore);
+    };
+
+    const timeout = window.setTimeout(finish, MAX_WAIT_MS);
+    void preload.finally(finish);
 
     return () => {
+      cancelled = true;
+      window.clearTimeout(timeout);
       window.clearTimeout(leaveTimer);
       window.clearTimeout(hideTimer);
     };
@@ -55,7 +80,7 @@ export default function PageLoader() {
         transform: isLeaving ? "scaleY(0.98)" : "scaleY(1)",
         transformOrigin: "top",
         transition:
-          "opacity 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 600ms cubic-bezier(0.22, 1, 0.36, 1)",
+          "opacity 500ms cubic-bezier(0.22, 1, 0.36, 1), transform 500ms cubic-bezier(0.22, 1, 0.36, 1)",
       }}
     />
   );
