@@ -16,8 +16,9 @@
 
 # misc
 .DS_Store
-.cursor/
 *.pem
+*.tmp
+skill_output*.tmp
 
 # debug
 npm-debug.log*
@@ -36,6 +37,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# cursor
+# editor / agent
 .cursor/
 .vscode/
+.superpowers/

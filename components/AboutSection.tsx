@@ -8,29 +8,13 @@ import { cn } from "@/lib/utils";
 const skillGroups = [
   {
     title: "Frontend",
-    skills: [
-      { name: "JavaScript", level: "good" },
-      { name: "React", level: "good" },
-      { name: "Next.js", level: "good" },
-      { name: "HTML & CSS", level: "good" },
-    ],
+    skills: ["JavaScript", "React", "Next.js", "HTML & CSS"],
   },
   {
     title: "Backend",
-    skills: [
-      { name: "Python & Flask", level: "good" },
-      { name: "MySQL", level: "intermediate" },
-      { name: "MongoDB", level: "intermediate" },
-      { name: "Java", level: "basic" },
-    ],
+    skills: ["Python & Flask", "MySQL", "MongoDB", "Java"],
   },
 ];
-
-const levelStyles = {
-  good: "bg-white",
-  intermediate: "bg-white/50",
-  basic: "border border-white/60",
-};
 
 export default function AboutSection({
   className,
@@ -58,7 +42,7 @@ export default function AboutSection({
           className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
           variants={fadeUp}
         >
-          Über mich.
+          Über mich
         </motion.h2>
 
         <div className="mt-10 grid min-h-0 flex-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
@@ -89,42 +73,20 @@ export default function AboutSection({
             className="flex min-h-0 flex-col"
             variants={slideInRight}
           >
-            <div className="flex items-end justify-between gap-4">
-              <h3 className="font-label text-[11px] uppercase tracking-label text-muted">
-                Kompetenzen
-              </h3>
-              <div className="hidden flex-wrap gap-x-4 gap-y-1 font-label text-[8px] uppercase tracking-[0.16em] text-muted sm:flex">
-                <span className="flex items-center gap-1.5">
-                  <i className="h-1.5 w-1.5 rounded-full bg-white" /> Gut
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <i className="h-1.5 w-1.5 rounded-full bg-white/50" /> Solide
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <i className="h-1.5 w-1.5 rounded-full border border-white/60" />{" "}
-                  Basis
-                </span>
-              </div>
-            </div>
+            <h3 className="font-mono text-[11px] uppercase tracking-label text-muted">
+              Kompetenzen
+            </h3>
 
-            <div className="mt-6 grid grid-cols-2 gap-8">
+            <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-8">
               {skillGroups.map((group) => (
                 <div key={group.title}>
-                  <p className="font-label text-[10px] uppercase tracking-label text-muted">
+                  <p className="font-mono text-[10px] uppercase tracking-label text-muted">
                     {group.title}
                   </p>
-                  <ul className="mt-4 space-y-3">
+                  <ul className="mt-4 space-y-2">
                     {group.skills.map((skill) => (
-                      <li key={skill.name} className="flex items-center gap-3">
-                        <span
-                          aria-hidden="true"
-                          className={`h-1.5 w-1.5 flex-none rounded-full ${
-                            levelStyles[skill.level as keyof typeof levelStyles]
-                          }`}
-                        />
-                        <span className="text-base text-white/90">
-                          {skill.name}
-                        </span>
+                      <li key={skill} className="text-base text-white/90">
+                        {skill}
                       </li>
                     ))}
                   </ul>
@@ -133,7 +95,7 @@ export default function AboutSection({
             </div>
 
             <div className="mt-8 shrink-0 border-t border-border py-5">
-              <p className="font-label text-[11px] uppercase tracking-label text-muted">
+              <p className="font-mono text-[11px] uppercase tracking-label text-muted">
                 Kontakt
               </p>
               <a

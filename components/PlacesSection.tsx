@@ -29,7 +29,7 @@ function PhotoCard({
       aria-label={`${item.place} — Grossansicht`}
       data-cursor="grow"
       className={cn(
-        "group relative shrink-0 overflow-hidden p-0 text-left",
+        "group relative shrink-0 overflow-hidden border border-border p-0 text-left",
         className,
       )}
     >
@@ -37,10 +37,11 @@ function PhotoCard({
       <img
         src={item.src}
         alt=""
-        className="places-photo h-full w-full object-cover"
+        className="places-photo h-full w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
       />
-      <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent px-4 pb-4 pt-10 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <span className="font-label text-[10px] uppercase tracking-label text-white">
+      <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-1 px-3 pb-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <span className="font-mono text-[10px] uppercase tracking-label text-white">
           {item.place}
         </span>
       </span>
@@ -171,7 +172,7 @@ const Lightbox = forwardRef<
               alt={photo.alt}
               className="max-h-[min(78vh,820px)] w-auto max-w-full object-contain"
             />
-            <p className="mt-6 font-label text-[11px] uppercase tracking-label text-white">
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-label text-white/70">
               {photo.place}
             </p>
           </motion.div>
@@ -187,7 +188,7 @@ const Lightbox = forwardRef<
           <button
             type="button"
             onClick={onPrev}
-            className="font-label text-[11px] uppercase tracking-label text-white/50 transition-colors duration-300 hover:text-white"
+            className="font-mono text-[11px] uppercase tracking-label text-white/50 transition-colors duration-300 hover:text-white"
             data-cursor="grow"
           >
             Zurück
@@ -195,7 +196,7 @@ const Lightbox = forwardRef<
           <button
             type="button"
             onClick={onNext}
-            className="font-label text-[11px] uppercase tracking-label text-white/50 transition-colors duration-300 hover:text-white"
+            className="font-mono text-[11px] uppercase tracking-label text-white/50 transition-colors duration-300 hover:text-white"
             data-cursor="grow"
           >
             Weiter
@@ -234,31 +235,24 @@ export default function PlacesSection() {
   }, []);
 
   return (
-    <section id="orte" className="border-t border-border py-20 md:py-28">
+    <section id="orte" className="border-t border-border px-6 py-20 md:px-10 md:py-28 lg:px-16">
       <motion.div
-        className="mb-16 px-6 md:px-10 lg:px-16"
+        className="mb-16"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
         variants={stagger}
       >
         <motion.h2
-          className="font-display text-[clamp(2.5rem,6vw,4rem)] font-normal leading-[0.95]"
+          className="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
           variants={fadeUp}
         >
-          Orte.
+          Orte
         </motion.h2>
-        <motion.p
-          className="mt-6 max-w-2xl text-base leading-8 text-white/80 md:text-lg md:leading-9"
-          variants={fadeUp}
-        >
-          Reisen gehört zu den Dingen, die ich am meisten liebe, und diese
-          Fotos zeigen einige meiner liebsten Momente unterwegs.
-        </motion.p>
       </motion.div>
 
       {prefersReducedMotion ? (
-        <div className="grid grid-cols-2 gap-3 px-6 sm:grid-cols-3 md:grid-cols-4 md:px-10 lg:px-16">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
           {places.map((item) => (
             <PhotoCard
               key={item.src}
@@ -270,7 +264,7 @@ export default function PlacesSection() {
         </div>
       ) : (
         <div
-          className="places-marquee space-y-3"
+          className="places-marquee -mx-6 space-y-3 md:-mx-10 lg:-mx-16"
           data-paused={active ? "" : undefined}
         >
           <MarqueeRow items={rowA} onOpen={setActive} />

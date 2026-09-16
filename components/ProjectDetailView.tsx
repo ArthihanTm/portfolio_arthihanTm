@@ -174,7 +174,7 @@ export default function ProjectDetailView({ project }: Props) {
 
                 variants={fadeUp}
               >
-                Was das Projekt macht.
+                Was das Projekt macht
               </motion.h2>
 
               <ul className="mt-12 space-y-0">
@@ -216,7 +216,7 @@ export default function ProjectDetailView({ project }: Props) {
 
                 variants={fadeUp}
               >
-                Pipeline.
+                Pipeline
               </motion.h2>
               <motion.p
                 className="mt-5 max-w-2xl text-sm font-light leading-7 text-white/55 md:text-base md:leading-8"

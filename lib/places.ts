@@ -18,12 +18,12 @@ export const places: PlacePhoto[] = [
   {
     src: "/places/img-5521.jpg",
     alt: "Strand bei Sonnenuntergang",
-    place: "Küste",
+    place: "Montpellier",
   },
   {
     src: "/places/img-5537.jpg",
     alt: "Reiterstandbild gegen den Himmel",
-    place: "Lyon",
+    place: "Montpellier",
   },
   {
     src: "/places/barcelona-prim.jpg",
@@ -46,9 +46,14 @@ export const places: PlacePhoto[] = [
     place: "Tossa de Mar",
   },
   {
+    src: "/places/wasserauen-seealpsee.jpg",
+    alt: "Seealpsee mit Kühen im Vordergrund",
+    place: "Wasserauen",
+  },
+  {
     src: "/places/img-6797.jpg",
     alt: "Küche mit voller Wand",
-    place: "Unterwegs",
+    place: "Miami",
   },
   {
     src: "/places/img-6840.jpg",
@@ -81,6 +86,11 @@ export const places: PlacePhoto[] = [
     place: "Miami",
   },
   {
+    src: "/places/miami-midtown.jpg",
+    alt: "Midtown Residences an der 32nd Street",
+    place: "Miami",
+  },
+  {
     src: "/places/img-7802.jpg",
     alt: "Gasse mit Puerto-Rico-Flagge",
     place: "San Juan",
@@ -103,7 +113,7 @@ export const places: PlacePhoto[] = [
   {
     src: "/places/img-9729.jpg",
     alt: "Wohnbau mit geschwungenen Balkonen",
-    place: "Miami",
+    place: "Toronto",
   },
   {
     src: "/places/san-juan-courtyard.jpg",
