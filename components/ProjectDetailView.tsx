@@ -20,7 +20,7 @@ export default function ProjectDetailView({ project }: Props) {
   return (
     <>
       <Nav />
-      <main className="relative overflow-hidden px-6 pb-28 pt-28 md:px-10 md:pb-36 md:pt-36 lg:px-16">
+      <main className="relative overflow-x-clip px-5 pb-20 pt-24 sm:px-6 sm:pb-28 sm:pt-28 md:px-10 md:pb-36 md:pt-36 lg:px-16">
         {/* Soft atmospheric glow — portfolio black, not purple */}
         <div
           aria-hidden
@@ -56,8 +56,7 @@ export default function ProjectDetailView({ project }: Props) {
           {/* Hero title */}
           <div className="overflow-hidden">
             <motion.h1
-              className="max-w-[16ch] font-display text-[clamp(3.25rem,9vw,6.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.04em]"
-
+              className="max-w-[16ch] break-words font-display text-[clamp(2.5rem,11vw,6.5rem)] font-bold uppercase leading-[0.88] tracking-[-0.04em]"
               variants={
                 prefersReducedMotion
                   ? fadeUp
@@ -81,16 +80,16 @@ export default function ProjectDetailView({ project }: Props) {
           />
 
           {/* Description + side meta */}
-          <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.7fr)] lg:gap-20">
+          <div className="mt-10 grid gap-10 sm:mt-12 sm:gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.7fr)] lg:gap-20">
             <motion.p
-              className="max-w-2xl text-[1.05rem] font-light leading-8 text-white/80 md:text-lg md:leading-9"
+              className="max-w-2xl text-base font-light leading-7 text-white/80 sm:text-[1.05rem] sm:leading-8 md:text-lg md:leading-9"
               variants={fadeUp}
             >
               {project.description}
             </motion.p>
 
             <motion.aside
-              className="flex flex-col justify-between gap-10 border-t border-border pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
+              className="flex flex-col justify-between gap-8 border-t border-border pt-6 sm:gap-10 sm:pt-8 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0"
               variants={fadeUp}
             >
               <div>
@@ -228,7 +227,7 @@ export default function ProjectDetailView({ project }: Props) {
               </motion.p>
 
               <motion.div
-                className="mt-10 overflow-hidden border border-border bg-white/[0.02] p-4 md:p-8"
+                className="mt-10 -mx-5 overflow-x-auto overscroll-x-contain border-y border-border bg-white/[0.02] px-4 py-4 sm:mx-0 sm:border sm:p-6 md:p-8"
                 variants={
                   prefersReducedMotion
                     ? fadeUp

@@ -27,27 +27,27 @@ export default function AboutSection({
   return (
     <section
       className={cn(
-        "flex h-full min-h-0 flex-col overflow-hidden border-t border-border px-6 py-16 md:px-10 md:py-20 lg:px-16",
+        "flex min-h-0 flex-col border-t border-border px-5 py-14 sm:px-6 sm:py-16 md:min-h-[100svh] md:px-10 md:py-20 lg:px-16",
         className,
       )}
     >
       <motion.div
-        className="mx-auto flex h-full w-full min-h-0 max-w-[1440px] flex-col"
+        className="mx-auto flex w-full min-h-0 max-w-[1440px] flex-1 flex-col"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.15 }}
         variants={stagger}
       >
         <motion.h2
-          className="shrink-0 font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
+          className="shrink-0 font-display text-[clamp(2.25rem,8vw,4.5rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
           variants={fadeUp}
         >
           Über mich
         </motion.h2>
 
-        <div className="mt-10 grid min-h-0 flex-1 gap-10 md:grid-cols-2 md:gap-16 lg:gap-20">
+        <div className="mt-8 grid min-h-0 flex-1 gap-10 sm:mt-10 md:grid-cols-2 md:gap-16 lg:gap-20">
           <motion.div
-            className="space-y-6 text-base leading-8 text-white/92 md:text-lg md:leading-9"
+            className="space-y-5 text-[0.98rem] leading-7 text-white/92 sm:space-y-6 sm:text-base sm:leading-8 md:text-lg md:leading-9"
             variants={slideInLeft}
           >
             <p>
@@ -77,7 +77,7 @@ export default function AboutSection({
               Kompetenzen
             </h3>
 
-            <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-8">
+            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-8 sm:mt-6 sm:gap-x-8">
               {skillGroups.map((group) => (
                 <div key={group.title}>
                   <p className="font-mono text-[10px] uppercase tracking-label text-muted">
@@ -100,7 +100,7 @@ export default function AboutSection({
               </p>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="mt-3 inline-block text-base text-white/90 underline decoration-border decoration-1 underline-offset-[7px] transition-[color,text-decoration-color] duration-300 hover:text-white hover:decoration-white"
+                className="mt-3 inline-block break-all text-base text-white/90 underline decoration-border decoration-1 underline-offset-[7px] transition-[color,text-decoration-color] duration-300 hover:text-white hover:decoration-white sm:break-normal"
                 data-cursor="grow"
               >
                 {CONTACT_EMAIL}

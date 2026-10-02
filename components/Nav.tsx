@@ -74,10 +74,10 @@ export default function Nav() {
         resetTimer();
       }}
     >
-      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-center gap-3 px-6 py-5 md:gap-4 md:px-10 lg:px-16">
-        <div className="flex flex-wrap items-center gap-3 text-[11px] uppercase tracking-label text-muted md:gap-4">
+      <div className="mx-auto flex w-full max-w-[1440px] items-center justify-center gap-2 px-4 py-4 sm:gap-3 sm:px-6 sm:py-5 md:gap-4 md:px-10 lg:px-16">
+        <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[10px] uppercase tracking-label text-muted sm:gap-x-3 sm:text-[11px] md:gap-x-4">
           {navLinks.map((link, index) => (
-            <span key={link.href} className="flex items-center gap-3 md:gap-4">
+            <span key={link.href} className="flex items-center gap-2 sm:gap-3 md:gap-4">
               <a
                 href={link.href}
                 className="font-label transition-colors duration-300 hover:text-white"
@@ -86,7 +86,7 @@ export default function Nav() {
                 {link.label}
               </a>
               {index < navLinks.length - 1 ? (
-                <span aria-hidden="true" className="text-border">
+                <span aria-hidden="true" className="hidden text-border sm:inline">
                   |
                 </span>
               ) : null}

@@ -40,7 +40,7 @@ function PhotoCard({
         className="places-photo h-full w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
       />
       <span className="pointer-events-none absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/20" />
-      <span className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-1 px-3 pb-3 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-3 pb-3 pt-10 opacity-100 transition-all duration-300 sm:translate-y-1 sm:bg-none sm:pt-0 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
         <span className="font-mono text-[10px] uppercase tracking-label text-white">
           {item.place}
         </span>
@@ -70,7 +70,7 @@ function MarqueeRow({
             key={`${item.src}-${index}`}
             item={item}
             onOpen={onOpen}
-            className="h-[260px] w-[190px] sm:h-[300px] sm:w-[220px] md:h-[340px] md:w-[250px]"
+            className="h-[210px] w-[150px] sm:h-[300px] sm:w-[220px] md:h-[340px] md:w-[250px]"
           />
         ))}
       </div>
@@ -235,20 +235,27 @@ export default function PlacesSection() {
   }, []);
 
   return (
-    <section id="orte" className="border-t border-border px-6 py-20 md:px-10 md:py-28 lg:px-16">
+    <section id="orte" className="border-t border-border px-5 py-16 sm:px-6 sm:py-20 md:px-10 md:py-28 lg:px-16">
       <motion.div
-        className="mb-16"
+        className="mb-10 sm:mb-16"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
         variants={stagger}
       >
         <motion.h2
-          className="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
+          className="font-display text-[clamp(2.25rem,8vw,4rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]"
           variants={fadeUp}
         >
           Orte
         </motion.h2>
+        <motion.p
+          className="mt-5 max-w-xl text-base leading-7 text-white/70 sm:mt-6"
+          variants={fadeUp}
+        >
+          Ich reise gerne. Hier sind die Bilder, auf die ich am meisten stolz
+          bin.
+        </motion.p>
       </motion.div>
 
       {prefersReducedMotion ? (

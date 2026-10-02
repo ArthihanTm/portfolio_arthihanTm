@@ -22,17 +22,17 @@ export default function ProjectsSection() {
   return (
     <section
       id="projekte"
-      className="border-t border-border px-6 py-20 md:px-10 md:py-28 lg:px-16"
+      className="border-t border-border px-5 py-16 sm:px-6 sm:py-20 md:px-10 md:py-28 lg:px-16"
     >
       <motion.div
-        className="mb-16 flex items-end justify-between gap-8"
+        className="mb-10 flex items-end justify-between gap-8 sm:mb-16"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.5 }}
         variants={row}
       >
         <div>
-          <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,4rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]">
+          <h2 className="mt-3 font-display text-[clamp(2.25rem,8vw,4rem)] font-bold uppercase leading-[0.92] tracking-[-0.035em]">
             Projektübersicht
           </h2>
         </div>
@@ -50,27 +50,23 @@ export default function ProjectsSection() {
             <Link
               href={`/projekte/${project.slug}`}
               data-cursor="grow"
-              className="group flex items-center gap-6 border-b border-border py-8 transition-colors duration-300 hover:bg-white/[0.025] md:gap-10 md:py-10 lg:py-12"
+              className="group flex items-baseline gap-4 border-b border-border py-7 transition-colors duration-300 hover:bg-white/[0.025] sm:items-center sm:gap-6 sm:py-8 md:gap-10 md:py-10 lg:py-12"
             >
-              <span className="w-10 flex-none font-label text-[10px] tracking-label text-muted/40">
+              <span className="w-8 flex-none font-label text-[10px] tracking-label text-muted/40 sm:w-10">
                 {String(index + 1).padStart(2, "0")}
               </span>
 
-              <span className="min-w-0 flex-1 font-display text-[clamp(2rem,4.5vw,3.75rem)] font-medium uppercase leading-[0.95] tracking-[-0.03em] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
+              <span className="min-w-0 flex-1 break-words font-display text-[clamp(1.55rem,6.5vw,3.75rem)] font-medium uppercase leading-[0.95] tracking-[-0.03em] text-white transition-transform duration-500 ease-out group-hover:-translate-y-0.5">
                 {project.name}
               </span>
 
-              <span className="hidden flex-none font-label text-[10px] tracking-label text-muted/40 sm:block">
-                {project.year}
-              </span>
-
-              <span className="font-label text-[10px] uppercase tracking-label text-muted/50 sm:hidden">
+              <span className="flex-none font-label text-[10px] tracking-label text-muted/40">
                 {project.year}
               </span>
 
               <span
                 aria-hidden="true"
-                className="flex-none -translate-x-3 font-mono text-2xl text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100"
+                className="hidden flex-none -translate-x-3 font-mono text-2xl text-white opacity-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-0 group-hover:opacity-100 md:inline"
               >
                 →
               </span>

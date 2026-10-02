@@ -62,7 +62,7 @@ export default function MermaidDiagram({
   return (
     <div
       ref={containerRef}
-      className={`overflow-x-auto [&_svg]:mx-auto [&_svg]:h-auto [&_svg]:max-w-none [&_svg]:min-w-full ${className}`}
+      className={`overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] [&_svg]:mx-auto [&_svg]:h-auto [&_svg]:max-w-none [&_svg]:min-w-[720px] sm:[&_svg]:min-w-full ${className}`}
       aria-label="Pipeline-Diagramm"
     />
   );
